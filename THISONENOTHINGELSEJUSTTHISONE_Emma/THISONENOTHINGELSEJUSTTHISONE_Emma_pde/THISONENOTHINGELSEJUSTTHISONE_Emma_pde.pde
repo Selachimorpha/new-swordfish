@@ -1,12 +1,9 @@
 ArrayList<pufferfish> pufferfishes = new ArrayList<pufferfish>();
+
 //declare variables
 //swordfish
 PImage s;
 PImage sdown;
-//pufferfish
-PImage pf;
-//narwhal
-PImage nw;
 //location of swordfish
 PVector loc;
 //size of swordfish
@@ -37,7 +34,6 @@ void setup() {
   size(1000, 625);
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
-  pf = loadImage("pufferfish.png");
   nw = loadImage("narwhal.png");
   oceanmenu = loadImage("ocean menu.jpg");
   bruce = loadImage("nemo-shark.jpg");
@@ -64,10 +60,8 @@ void draw() {
   textSize(40);
   text("Start", width/2-45, 540);
   // level 1
-  if (running == 0) {
-    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-      running = 1;
-    }
+  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+    running = 1;
   } else if (running == 1) {
     background(bruce);
     textSize(60);
@@ -225,44 +219,17 @@ void draw() {
     textSize(38);
     text("Retry", width/2-45, 540);
     max=3;
-
-    //retry button
-    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-      life = 3;
-      running = 1;
-    }
   }
-
-
+  //retry button
+  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+    life = 3;
+    running = 1;
+  }
   //test to kill self
   if (keyPressed) {
     if (key == 'l') {
       life = 0;
     }
   }
-  for (int i = 0; i < pufferfishes.size(); i++) { 
-    if (swordfish.loc.x < pufferfish(i).loc.x && swordfish.loc.x > pufferfish(i).loc.x) {
-      life = 0;
-      }
-    }  
-
-
-    //winner screen
-    //  if (life==6) { 
-    //
-    //    background(#0710F0);        
-    //    swordfish.loc.y=3*height/4;
-    //    swordfish.loc.x=0;
-    //    textSize(36);                                                
-    //    text("CONGRATULATIONS!", width/3, height/2);                 
-    //    textSize(18);                                                
-    //    text("You have won ", width/3+110, height/2+40);
-    //    fill(0);
-    //    rect(width/2-50, 500, 100, 50); 
-    //    fill(#FFFFFF);
-    //    textSize(38);
-    //    text("Retry", width/2-45, 540);
-    //    max=3;
-    //  }
-  }
+}
 

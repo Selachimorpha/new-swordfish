@@ -113,7 +113,7 @@ void draw() {
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
-    for (pufferfishes.size() < max) {
+    if (pufferfishes.size() < max) {
       pufferfishes.add(new pufferfish(200, 200));
     }
     for (int i = 0; i < pufferfishes.size (); i++) 
@@ -122,85 +122,118 @@ void draw() {
       p.display();
       p.move();
       p.bounce();
-      swordfish.display();
-      swordfish.move();
-
-      // level 3
-      if (swordfish.nextlevel() == true) {
-        running = 3;
-      }
-    } else if (running == 3) {
-      background(spongebob);
-      textSize(60);
-      text("Level 3", 50, 100);
-      swordfish.display();
-      swordfish.move(); 
-      if (swordfish.nextlevel() == true) {
-        running = 4;
-      }
-    } else if (running == 4) {
-      background(#000000);
-      textSize(40);
-      text("The final boss lays ahead, he is very dangerous....", 25, height/3);
-      text("Would you like to continue?", width/2-285, height/3+40);
-      rect(width/2-350, height/2+100, 200, 50);
-      textSize(20);
-      fill(#000000);
-      text("Not really but I will", width/2-345, height/2+130);
-      fill(#FFFFFF);
-      rect(width/2+150, height/2+100, 200, 50);
-      fill(#000000);
-      text("Of course!!!", width/2+185, height/2+130);
-      if (mouseX < width/2-150 && mouseX > width/2-350 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
-        running = 5;
-      }
-      if (mouseX < width/2+350 && mouseX > width/2+150 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
-        running = 5;
-      }
-    } else if (running == 5) {
-      background(finish);
-      textSize(60);
-      text("Final Level", 50, 100);
-      swordfish.display();
-      swordfish.move();
-      if ( swordfish.loc.x > width) {
-        println("someone wimped out");
-        life = 0;
+      for (int j=0; j < pufferfishes.size (); j++) 
+      {
+        if (i!=j) {
+          pufferfish p2=pufferfishes.get(j);
+        }
+      }  
+      if (pufferfishes.size() > max) {
+        pufferfishes.remove(0);
       }
     }
+    swordfish.display();
+    swordfish.move();
 
 
-    //ways to die
-    if (swordfish.loc.y > height) {
-      println("went off the bottom of the screen");
+
+    // level 3
+    if (swordfish.nextlevel() == true) {
+      running = 3;
+    }
+  } else if (running == 3) {
+    max=7;
+    background(spongebob);
+    textSize(60);
+    text("Level 3", 50, 100);
+    if (pufferfishes.size() < max) {
+      pufferfishes.add(new pufferfish(200, 200));
+    }
+    for (int i = 0; i < pufferfishes.size (); i++) 
+    {
+      pufferfish p = pufferfishes.get(i);
+      p.display();
+      p.move();
+      p.bounce();
+      for (int j=0; j < pufferfishes.size (); j++) 
+      {
+        if (i!=j) {
+          pufferfish p2=pufferfishes.get(j);
+        }
+      }  
+      if (pufferfishes.size() > max) {
+        pufferfishes.remove(0);
+      }
+    }
+    swordfish.display();
+    swordfish.move(); 
+    if (swordfish.nextlevel() == true) {
+      running = 4;
+    }
+  } else if (running == 4) {
+    background(#000000);
+    textSize(40);
+    text("The final boss lays ahead, he is very dangerous....", 25, height/3);
+    text("Would you like to continue?", width/2-285, height/3+40);
+    rect(width/2-350, height/2+100, 200, 50);
+    textSize(20);
+    fill(#000000);
+    text("Not really but I will", width/2-345, height/2+130);
+    fill(#FFFFFF);
+    rect(width/2+150, height/2+100, 200, 50);
+    fill(#000000);
+    text("Of course!!!", width/2+185, height/2+130);
+    if (mouseX < width/2-150 && mouseX > width/2-350 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
+      running = 5;
+    }
+    if (mouseX < width/2+350 && mouseX > width/2+150 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
+      running = 5;
+    }
+  } else if (running == 5) {
+    background(finish);
+    textSize(60);
+    text("Final Level", 50, 100);
+    swordfish.display();
+    swordfish.move();
+    if ( swordfish.loc.x > width) {
+      println("someone wimped out");
       life = 0;
     }
-    //death screen
-    if (life==0) { 
+  }
 
-      background(#0710F0);        
-      swordfish.loc.y=3*height/4;
-      swordfish.loc.x=0;
-      textSize(36);                                                
-      text("CONGRATULATIONS!", width/3, height/2);                 
-      textSize(18);                                                
-      text("You have died ", width/3+110, height/2+40);
-      fill(0);
-      rect(width/2-50, 500, 100, 50); 
-      fill(#FFFFFF);
-      textSize(38);
-      text("Retry", width/2-45, 540);
-    }
-    //retry button
-    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-      life = 3;
-      running = 1;
-    }
-    //test to kill self
-    if (keyPressed) {
-      if (key == 'l') {
-        life = 0;
-      }
+
+  //ways to die
+  if (swordfish.loc.y > height) {
+    println("went off the bottom of the screen");
+    life = 0;
+  }
+  //death screen
+  if (life==0) { 
+
+    background(#0710F0);        
+    swordfish.loc.y=3*height/4;
+    swordfish.loc.x=0;
+    textSize(36);                                                
+    text("CONGRATULATIONS!", width/3, height/2);                 
+    textSize(18);                                                
+    text("You have died ", width/3+110, height/2+40);
+    fill(0);
+    rect(width/2-50, 500, 100, 50); 
+    fill(#FFFFFF);
+    textSize(38);
+    text("Retry", width/2-45, 540);
+    max=3;
+  }
+  //retry button
+  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+    life = 3;
+    running = 1;
+  }
+  //test to kill self
+  if (keyPressed) {
+    if (key == 'l') {
+      life = 0;
     }
   }
+}
 

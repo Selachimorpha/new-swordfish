@@ -64,9 +64,9 @@ void draw() {
   textSize(40);
   text("Start", width/2-45, 540);
   // level 1
-  if (running < 1) {
+  if (running ==0) {
     if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-      running += 1;
+      running = 1;
     }
   } 
    
@@ -175,12 +175,14 @@ void draw() {
     fill(#FFFFFF);
     textSize(38);
     text("Retry", width/2-45, 540);
-  }
-  //retry button
+    
+     //retry button
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     life = 3;
     running = 1;
   }
+  }
+ 
   //test to kill self
   if (keyPressed) {
     if (key == 'l') {

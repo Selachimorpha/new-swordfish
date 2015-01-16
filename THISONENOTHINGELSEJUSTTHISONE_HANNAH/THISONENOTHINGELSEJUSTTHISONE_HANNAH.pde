@@ -201,7 +201,7 @@ void draw() {
 
 
   //ways to die
-  if (swordfish.loc.y > height) {
+  if (swordfish.loc.y > height||swordfish.loc.y<0-100||swordfish.loc.x<0-200) {
     println("went off the bottom of the screen");
     life = 0;
   }

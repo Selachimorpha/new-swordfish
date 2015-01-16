@@ -235,5 +235,22 @@ void draw() {
       life = 0;
     }
   }
+  //winner screen
+//  if (life==6) { 
+//
+//    background(#0710F0);        
+//    swordfish.loc.y=3*height/4;
+//    swordfish.loc.x=0;
+//    textSize(36);                                                
+//    text("CONGRATULATIONS!", width/3, height/2);                 
+//    textSize(18);                                                
+//    text("You have won ", width/3+110, height/2+40);
+//    fill(0);
+//    rect(width/2-50, 500, 100, 50); 
+//    fill(#FFFFFF);
+//    textSize(38);
+//    text("Retry", width/2-45, 540);
+//    max=3;
+//  }
 }
 

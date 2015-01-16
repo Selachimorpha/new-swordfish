@@ -5,8 +5,6 @@ PImage s;
 PImage sdown;
 //pufferfish
 PImage pf;
-//narwhal
-PImage nw;
 //location of swordfish
 PVector loc;
 //size of swordfish
@@ -30,6 +28,10 @@ float life = 3;
 PImage spongebob;
 //background final level
 PImage finish;
+//boss
+PImage bs;
+//
+Boss bss;
 Player swordfish;
 int max;
 void setup() {
@@ -38,12 +40,12 @@ void setup() {
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
   pf = loadImage("pufferfish.png");
-  nw = loadImage("narwhal.png");
   oceanmenu = loadImage("ocean menu.jpg");
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
   finish = loadImage("barracuda.jpg");
+   bs = loadImage("Final Boss.png");
   max = 3;
 
   //change location
@@ -52,6 +54,7 @@ void setup() {
   szx = 200;
   szy = 100;
   swordfish=new Player();
+  bss = new Boss();
 }
 void draw() {
   println(pufferfishes.size());
@@ -195,6 +198,9 @@ void draw() {
     background(finish);
     textSize(60);
     text("Final Level", 50, 100);
+    bss.display();
+    bss.move();
+    bss.bounce();
     swordfish.display();
     swordfish.move();
     if ( swordfish.loc.x > width) {

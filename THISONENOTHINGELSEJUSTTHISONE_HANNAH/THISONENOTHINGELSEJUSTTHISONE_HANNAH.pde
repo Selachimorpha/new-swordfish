@@ -1,12 +1,9 @@
 ArrayList<pufferfish> pufferfishes = new ArrayList<pufferfish>();
+ArrayList<narwhal> narwhals = new ArrayList<narwhal>();
 //declare variables
 //swordfish
 PImage s;
 PImage sdown;
-//pufferfish
-PImage pf;
-//narwhal
-PImage nw;
 //location of swordfish
 PVector loc;
 //size of swordfish
@@ -37,7 +34,6 @@ void setup() {
   size(1000, 625);
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
-  pf = loadImage("pufferfish.png");
   nw = loadImage("narwhal.png");
   oceanmenu = loadImage("ocean menu.jpg");
   bruce = loadImage("nemo-shark.jpg");

@@ -57,16 +57,10 @@ void setup() {
 void draw() {
   
   background(oceanmenu);
-  textSize(60);
-  text("Selachimorpha", width/2-200, height/2-100);
   fill(0);
-  rect(width/2-50, 500, 100, 50); 
-  fill(360);
-  textSize(40);
-  text("Start", width/2-45, 540);
   // level 1
   if (running == 0) {
-    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+    if (mouseX < width/2+60 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
       running = 1;
     }
   } else if (running == 1) {

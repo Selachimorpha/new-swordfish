@@ -51,7 +51,8 @@ class Player {
   }
 
   boolean killboss(Boss Bosses) {
-   if (loc.dist(Bosses.loc) < szx/4 + Bosses.sz) {
+   if (loc.dist(Bosses.loc) < szx ) {
+         println("boss dies");
       return true;
    } else {
       return false;

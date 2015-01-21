@@ -1,5 +1,6 @@
 
 ArrayList<pufferfish> pufferfishes = new ArrayList<pufferfish>();
+ArrayList<Boss> Bosses = new ArrayList<Boss>();
 //declare variables
 //swordfish
 PImage s;
@@ -80,7 +81,7 @@ void draw() {
         println("kill!!!");
         pufferfishes.remove(i);
       }
-      if (swordfish.die(p)){
+      if (swordfish.die(p)) {
         life = 0;
       }
       if (pufferfishes.size() == 0) {
@@ -117,8 +118,7 @@ void draw() {
       if (swordfish.kill(p) && keyPressed && key == ' ') {
         println("kill!!!");
         pufferfishes.remove(i);
-      }
-      else if(swordfish.kill(p)){
+      } else if (swordfish.kill(p)) {
         life = 0;
       }
       if (pufferfishes.size() == 0) {
@@ -182,6 +182,17 @@ void draw() {
     rect(width/2+150, height/2+100, 200, 50);
     fill(#000000);
     text("Of course!!!", width/2+185, height/2+130);
+    for (int i = 0; i < Bosses.size (); i++) 
+    {
+      Boss b = Bosses.get(i);
+      b.display();
+      b.move();
+      b.bounce();
+      if (swordfish.killboss(b) && keyPressed && key == ' ') {
+        println("kill!!!");
+        Bosses.remove(i);
+      }
+    }
     if (mouseX < width/2-150 && mouseX > width/2-350 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
       running = 5;
     }

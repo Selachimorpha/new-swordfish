@@ -50,6 +50,13 @@ class Player {
     }
   }
 
+  boolean killboss(Boss Bosses) {
+   if (loc.dist(Bosses.loc) < szx/4 + Bosses.sz) {
+      return true;
+   } else {
+      return false;
+    }
+  }
   boolean nextlevel() { 
     if (loc.x > width) {
       loc.x=0;

@@ -10,7 +10,7 @@ class pufferfish {
     //    loc=new PVector(random(20, 600), random(20, 600));
     vel= new PVector(random(5), random(5));
     puffer = loadImage("pufferfish.png");
-    loc = new PVector(random(width/2, width + sz/2), random(20, 600));
+    loc = new PVector(random(500, width + sz/2), random(20, 600));
   }
   void display() {
 

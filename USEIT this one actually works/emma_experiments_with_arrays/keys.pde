@@ -42,6 +42,14 @@ class Player {
       return false;
     }
   }
+  boolean die(pufferfish pufferfishes) {
+    if (loc. dist(pufferfishes.loc) < szx/4 + pufferfishes.sz/4) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   boolean nextlevel() { 
     if (loc.x > width) {
       loc.x=0;

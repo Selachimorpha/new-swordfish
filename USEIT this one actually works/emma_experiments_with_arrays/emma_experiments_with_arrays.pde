@@ -51,6 +51,7 @@ void setup() {
 
   swordfish=new Player();
   bss = new Boss();
+  Bosses.add(bss);
 }
 void draw() {
 
@@ -182,17 +183,7 @@ void draw() {
     rect(width/2+150, height/2+100, 200, 50);
     fill(#000000);
     text("Of course!!!", width/2+185, height/2+130);
-    for (int i = 0; i < Bosses.size (); i++) 
-    {
-      Boss b = Bosses.get(i);
-      b.display();
-      b.move();
-      b.bounce();
-      if (swordfish.killboss(b) && keyPressed && key == ' ') {
-        println("kill!!!");
-        Bosses.remove(i);
-      }
-    }
+    
     if (mouseX < width/2-150 && mouseX > width/2-350 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
       running = 5;
     }
@@ -203,14 +194,25 @@ void draw() {
     background(finish);
     textSize(60);
     text("Final Level", 50, 100);
-    bss.display();
-    bss.move();
-    bss.bounce();
+    //bss.display();
+    //bss.move();
+    //bss.bounce();
     swordfish.display();
     swordfish.move();
     if ( swordfish.loc.x > width) {
       println("someone wimped out");
       life = 0;
+    }
+    if(Bosses.size() > 0)
+    {
+      Boss b = Bosses.get(0);
+      b.display();
+      b.move();
+      b.bounce();
+      if (swordfish.killboss(bss) && keyPressed && key == ' ') {
+        println("kill!!!");
+        Bosses.remove(0);
+      }
     }
   }
 

@@ -51,7 +51,10 @@ class Player {
   }
 
   boolean killboss(Boss Bosses) {
-   if (loc.dist(Bosses.loc) < szx ) {
+  // if (loc.dist(Bosses.loc) < szx ) {
+    PVector swordCenter = new PVector(loc.x+szx/2, loc.y+szy/2);
+    PVector bossCenter = new PVector(Bosses.loc.x + Bosses.sz/2, Bosses.loc.y + Bosses.sz/2);
+    if(abs(swordCenter.x - bossCenter.x) < (szx+Bosses.sz)/2 &&  abs(swordCenter.y - bossCenter.y) < (szy+Bosses.sz)/2){
          println("boss dies");
       return true;
    } else {

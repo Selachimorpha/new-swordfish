@@ -3,7 +3,7 @@ class pufferfish {
   float sz;
   PImage puffer;
 
-
+// pufferfish enemies
 
   pufferfish(float x, float y) {
     sz = 100;
@@ -13,7 +13,6 @@ class pufferfish {
     loc = new PVector(random(500, width + sz/2), random(20, 600));
   }
   void display() {
-
     image(puffer, loc.x, loc.y, sz, sz);
   }
   void move() {
@@ -21,6 +20,9 @@ class pufferfish {
     //    loc.y.add(vel);
     //  vel.add(acc);
   }
+  
+  //movement pattern
+  
   void bounce() { 
     if (loc.x + 90 > width) {
       vel.x = -abs(vel.x);

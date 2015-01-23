@@ -1,7 +1,9 @@
-
+//Enemies
 ArrayList<pufferfish> pufferfishes = new ArrayList<pufferfish>();
 ArrayList<Boss> Bosses = new ArrayList<Boss>();
+
 //declare variables
+
 //swordfish
 PImage s;
 PImage sdown;
@@ -32,13 +34,18 @@ PImage spongebob;
 PImage finish;
 //boss
 PImage bs;
-//
 Boss bss;
+//player character
 Player swordfish;
+//retries
 int max;
+
 void setup() {
+
   colorMode(HSB, 360, 100, 100);
   size(1000, 625);
+
+  //loading images
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
   pf = loadImage("pufferfish.png");
@@ -49,6 +56,7 @@ void setup() {
   finish = loadImage("barracuda.jpg");
   bs = loadImage("Final Boss.png");
 
+  //inserting classes
   swordfish=new Player();
   bss = new Boss();
   Bosses.add(bss);
@@ -57,34 +65,42 @@ void draw() {
 
   background(oceanmenu);
   fill(0);
-  // level 1
+  // start screen
   if (running == 0) {
     if (mouseX < width/2+60 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
       running = 1;
     }
   } 
+
+  //level 1
+
   if (running == 1) {
     background(bruce);
     textSize(60);
     text("Level 1", 100, 100);
-    if (pufferfishes.size() < 1) {
+
+    //inserting enemies
+    if (pufferfishes.size() < 1 && running == 1) {
       pufferfishes.add(new pufferfish(200, 200));
       pufferfishes.add(new pufferfish(200, 200));
       pufferfishes.add(new pufferfish(200, 200));
     }  
-    for (int i = 0; i < pufferfishes.size (); i++) 
-    {
+    for (int i = 0; i < pufferfishes.size (); i++) {
       pufferfish p = pufferfishes.get(i);
       p.display();
       p.move();
       p.bounce();
+      
+      //killing pufferfish
       if (swordfish.kill(p) && keyPressed && key == ' ') {
         println("kill!!!");
         pufferfishes.remove(i);
       }
+      //killed by pufferfish
       if (swordfish.die(p)) {
         life = 0;
       }
+      //moving on if enemies die
       if (pufferfishes.size() == 0) {
         running = 2;
       }
@@ -94,15 +110,20 @@ void draw() {
   }
 
 
-  //level 2
+  //level 1 to level 2
   if (swordfish.nextlevel() == true) {
     running= 2;
   }
+ 
+  //level 2
   if (running == 2) {
 
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
+    
+    //adding enemies
+    
     if (pufferfishes.size() < 1) {
       pufferfishes.add(new pufferfish(200, 200));
       pufferfishes.add(new pufferfish(200, 200));
@@ -116,12 +137,17 @@ void draw() {
       p.display();
       p.move();
       p.bounce();
+      //killing enemies
       if (swordfish.kill(p) && keyPressed && key == ' ') {
         println("kill!!!");
         pufferfishes.remove(i);
-      } else if (swordfish.kill(p)) {
+      }
+     //killed by enemies
+     
+      else if (swordfish.kill(p)) {
         life = 0;
       }
+      //level advance
       if (pufferfishes.size() == 0) {
         running = 3;
       }
@@ -166,7 +192,7 @@ void draw() {
     swordfish.display();
     swordfish.move();
   } 
-
+ //boss warning screen
   if (swordfish.nextlevel() == true) {
     running = 4;
   } else if (running == 4) {
@@ -190,7 +216,9 @@ void draw() {
     if (mouseX < width/2+350 && mouseX > width/2+150 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
       running = 5;
     }
-  } else if (running == 5) {
+  } 
+  //final boss
+  else if (running == 5) {
     background(finish);
     textSize(60);
     text("Final Level", 50, 100);

@@ -20,6 +20,8 @@ class Boss {
     //    loc.y.add(vel);
     //  vel.add(acc);
   }
+  
+  //movement pattern
   void bounce() { 
     if (loc.x + 400 > width) {
       vel.x = -abs(vel.x);

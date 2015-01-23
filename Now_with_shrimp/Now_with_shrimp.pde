@@ -89,7 +89,9 @@ void draw() {
   
   // start screen
   background(oceanmenu);
-  fill(0);
+  fill(#000000);
+  textSize(24);
+  text("Instructions:  Kill the enemies and move to the right",width/4-60,height/2+165);
   if (running == 0) {
     if (mouseX < width/2+60 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
       running = 1;

@@ -37,8 +37,6 @@ PImage bs;
 Boss bss;
 //player character
 Player swordfish;
-//retries
-int max;
 //endspawn stops spawning pufferfish once they are dead
 int endspawn;
 
@@ -58,6 +56,8 @@ void setup() {
   spongebob = loadImage("spongebobstreet.png");
   finish = loadImage("barracuda.jpg");
   bs = loadImage("Final Boss.png");
+
+  //initialize
   endspawn=0;
 
   //inserting classes
@@ -78,7 +78,7 @@ void draw() {
 
   //level 1
 
-  if (running == 1) {
+    if (running == 1) {
     background(bruce);
     textSize(60);
     text("Level 1", 100, 100);
@@ -89,12 +89,14 @@ void draw() {
       pufferfishes.add(new pufferfish(200, 200));
       pufferfishes.add(new pufferfish(200, 200));
     }  
+
     for (int i = 0; i < pufferfishes.size (); i++) {
       pufferfish p = pufferfishes.get(i);
       p.display();
       p.move();
       p.bounce();
-      
+
+
       //killing pufferfish
       if (swordfish.kill(p) && keyPressed && key == ' ') {
         println("kill!!!");
@@ -104,10 +106,14 @@ void draw() {
       if (swordfish.die(p)) {
         life = 0;
       }
+
       //moving on if enemies die
       if (pufferfishes.size() == 0) {
-       endspawn+=1;
+        endspawn+=1;
       }
+    }
+    if (swordfish.loc.x+50>width && pufferfishes.size()>0) {
+      life=0;
     }
     swordfish.display();
     swordfish.move();
@@ -118,16 +124,16 @@ void draw() {
   if (swordfish.nextlevel() == true) {
     running= 2;
   }
- 
+
   //level 2
   if (running == 2) {
 
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
-    
+
     //adding enemies
-    
+
     if (pufferfishes.size() < 1 && running==2 && endspawn==1) {
       pufferfishes.add(new pufferfish(200, 200));
       pufferfishes.add(new pufferfish(200, 200));
@@ -146,15 +152,18 @@ void draw() {
         println("kill!!!");
         pufferfishes.remove(i);
       }
-     //killed by enemies
-     
+      //killed by enemies
+
       else if (swordfish.kill(p)) {
         life = 0;
       }
       //level advance
       if (pufferfishes.size() == 0) {
-       endspawn+=1;
+        endspawn+=1;
       }
+    }
+    if (swordfish.loc.x+50>width && pufferfishes.size()>0) {
+      life=0;
     }
     swordfish.display();
     swordfish.move();
@@ -193,10 +202,13 @@ void draw() {
         endspawn+=1;
       }
     }
+    if (swordfish.loc.x+50>width && pufferfishes.size()>0) {
+      life=0;
+    }
     swordfish.display();
     swordfish.move();
   } 
- //boss warning screen
+  //boss warning screen
   if (swordfish.nextlevel() == true) {
     running = 4;
   } else if (running == 4) {
@@ -255,8 +267,12 @@ void draw() {
     println("went off the bottom of the screen");
     life = 0;
   }
+  if (swordfish.loc.x>width+200 && pufferfishes.size()>0) {
+    life=0;
+  }
   //death screen
   if (life==0) { 
+
 
     background(#0710F0);        
     swordfish.loc.y=3*height/4;
@@ -270,12 +286,20 @@ void draw() {
     fill(#FFFFFF);
     textSize(38);
     text("Retry", width/2-45, 540);
-    max=3;
+    endspawn=0;
+  
 
     //retry button
     if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
       life = 3;
       running = 1;
+        //inserting enemies for when retry is hit
+    if (pufferfishes.size() < 1 && running == 1 && endspawn==0) {
+      pufferfishes.add(new pufferfish(200, 200));
+      pufferfishes.add(new pufferfish(200, 200));
+      pufferfishes.add(new pufferfish(200, 200));
+    }  
+
     }
   }
 
@@ -301,7 +325,7 @@ void draw() {
     fill(#FFFFFF);
     textSize(38);
     text("Retry", width/2-45, 540);
-    max=3;
+
     if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
       life = 3;
       running = 1;

@@ -260,72 +260,73 @@ void draw() {
         Bosses.remove(0);
         life=6;
       }
+      if (swordfish.loc.dist(bss.loc) < szx/4 + bss.sz/4){
+        life=0;
+      }
     }
   }
 
 
 
-//ways to die
-if (swordfish.loc.y > height||swordfish.loc.y<0-100||swordfish.loc.x<0-200) {
-  println("went off the bottom of the screen");
-  life = 0;
-}
-//  if (swordfish.loc.x>width+50 && pufferfishes.size()>0) {
-//    life=0;
-//  }
-//death screen
-if (life==0) { 
-
-
-  background(#0710F0);        
-  swordfish.loc.y=3*height/4;
-  swordfish.loc.x=0;
-  textSize(36);                                                
-  text("CONGRATULATIONS!", width/3, height/2);                 
-  textSize(18);                                                
-  text("You have died ", width/3+110, height/2+40);
-  fill(0);
-  rect(width/2-50, 500, 100, 50); 
-  fill(#FFFFFF);
-  textSize(38);
-  text("Retry", width/2-45, 540);
-  endspawn=0;
-
-
-  //retry button
-  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-    life = 3;
-    running = 1;
-    pufferfishes = new ArrayList<pufferfish>();
-  }
-}
-
-
-//test to kill self
-if (keyPressed) {
-  if (key == 'l') {
+  //ways to die
+  if (swordfish.loc.y > height||swordfish.loc.y<0-100||swordfish.loc.x<0-200) {
+    println("went off the bottom of the screen");
     life = 0;
   }
-}
-//winner screen
-if (life==6) { 
+  //death screen
+  if (life==0) { 
 
-  background(#0710F0);        
-  swordfish.loc.y=3*height/4;
-  swordfish.loc.x=0;
-  textSize(36);                                                
-  text("CONGRATULATIONS!", width/3, height/2);                 
-  textSize(18);                                                
-  text("You have won ", width/3+110, height/2+40);
-  fill(0);
-  rect(width/2-50, 500, 100, 50); 
-  fill(#FFFFFF);
-  textSize(38);
-  text("Retry", width/2-45, 540);
 
-  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-    life = 3;
-    running = 1;
+    background(#0710F0);        
+    swordfish.loc.y=3*height/4;
+    swordfish.loc.x=0;
+    textSize(36);                                                
+    text("CONGRATULATIONS!", width/3, height/2);                 
+    textSize(18);                                                
+    text("You have died ", width/3+110, height/2+40);
+    fill(0);
+    rect(width/2-50, 500, 100, 50); 
+    fill(#FFFFFF);
+    textSize(38);
+    text("Retry", width/2-45, 540);
+    endspawn=0;
+
+
+    //retry button
+    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+      life = 3;
+      running = 1;
+      pufferfishes = new ArrayList<pufferfish>();
+    }
+  }
+
+
+  //test to kill self
+  if (keyPressed) {
+    if (key == 'l') {
+      life = 0;
+    }
+  }
+  //winner screen
+  if (life==6) { 
+
+    background(#0710F0);        
+    swordfish.loc.y=3*height/4;
+    swordfish.loc.x=0;
+    textSize(36);                                                
+    text("CONGRATULATIONS!", width/3, height/2);                 
+    textSize(18);                                                
+    text("You have won ", width/3+110, height/2+40);
+    fill(0);
+    rect(width/2-50, 500, 100, 50); 
+    fill(#FFFFFF);
+    textSize(38);
+    text("Retry", width/2-45, 540);
+
+    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+      life = 3;
+      running = 1;
+    }
   }
 }
-}
+

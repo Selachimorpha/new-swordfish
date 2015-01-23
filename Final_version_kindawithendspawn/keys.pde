@@ -46,7 +46,9 @@ class Player {
   //killing pufferfish minions
 
   boolean kill(pufferfish pufferfishes) {
-    if (loc.dist(pufferfishes.loc) < szx/2 + pufferfishes.sz/2) {
+    PVector swordtip = new PVector(szx, 13);
+     PVector puffCenter = new PVector(pufferfishes.loc.x + pufferfishes.sz/4, pufferfishes.loc.y + pufferfishes.sz/4);
+    if (abs(swordtip.x - puffCenter.x) < (szx + pufferfishes.sz)/4 && abs(swordtip.y - puffCenter.y) < (szy +pufferfishes.sz)/4) {
       return true;
     } else {
       return false;
@@ -55,17 +57,20 @@ class Player {
 
   // getting killed by pufferfish
   boolean die(pufferfish pufferfishes) {
+     
+    
     if (loc. dist(pufferfishes.loc) < szx/4 + pufferfishes.sz/4) {
       return true;
     } else {
       return false;
     }
+  
   }
 
   // defeating the boss
   boolean killboss(Boss Bosses) {
     // if (loc.dist(Bosses.loc) < szx ) {
-    PVector swordCenter = new PVector(loc.x+szx/2, loc.y+szy/2);
+    PVector swordCenter = new PVector(loc.x+szx/2, loc.y-szy/2);
     PVector bossCenter = new PVector(Bosses.loc.x + Bosses.sz/2, Bosses.loc.y + Bosses.sz/2);
     if (abs(swordCenter.x - bossCenter.x) < (szx+Bosses.sz)/2 &&  abs(swordCenter.y - bossCenter.y) < (szy+Bosses.sz)/2) {
       println("boss dies");

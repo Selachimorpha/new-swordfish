@@ -45,14 +45,16 @@ class Player {
 
   //killing pufferfish minions
 
-  boolean kill(pufferfish pufferfishes) {
-    if (loc.dist(pufferfishes.loc) < szx/2 + pufferfishes.sz/2) {
+ boolean kill(pufferfish pufferfishes) {
+    PVector swordtip = new PVector(loc.x + szx, loc.y + 40);
+    ellipse(swordtip.x, swordtip.y, 30, 30);
+    PVector puffCenter = new PVector(pufferfishes.loc.x + pufferfishes.sz/4, pufferfishes.loc.y + pufferfishes.sz/4);
+    if (abs(swordtip.x - puffCenter.x) < (szx + pufferfishes.sz)/4 && abs(swordtip.y - puffCenter.y) < (szy +pufferfishes.sz)/4 && keyPressed && key == ' ') {
       return true;
     } else {
       return false;
     }
   }
-
   // getting killed by pufferfish
   boolean die(pufferfish pufferfishes) {
     if (loc. dist(pufferfishes.loc) < szx/4 + pufferfishes.sz/4) {

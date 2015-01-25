@@ -58,8 +58,8 @@ class Player {
 
   // getting killed by pufferfish
   boolean die(pufferfish pufferfishes) {
-    rect(loc.x, loc.y, szx, szy);
-    if (pufferfishes.loc.x - pufferfishes.sz/2 < loc.x + szx && pufferfishes.loc.x +pufferfishes.sz/2 > loc.x && pufferfishes.loc.y + pufferfishes.sz/2 > loc.y && pufferfishes.loc.y - pufferfishes.sz/2 < loc.y+szy) {
+    rect(loc.x + 20, loc.y + 30, szx/2, szy - 30);
+    if (pufferfishes.loc.x - pufferfishes.sz/2 < loc.x + szx/2 && pufferfishes.loc.x +pufferfishes.sz/2 > loc.x && pufferfishes.loc.y + pufferfishes.sz/2 > loc.y && pufferfishes.loc.y - pufferfishes.sz/2 < loc.y+szy) {
       print ("I've been hit!");
       return true;
     } else {

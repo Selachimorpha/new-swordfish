@@ -144,7 +144,7 @@ void draw() {
       }
       //killed by enemies
 
-      else if (swordfish.kill(p)) {
+      else if (swordfish.die(p)) {
         life = 0;
       }
       //level advance

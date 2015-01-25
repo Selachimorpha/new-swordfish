@@ -12,15 +12,16 @@ class Boss {
     loc = new PVector(random(600, 800), random(20, 600));
   }
   void display() {
+    imageMode(CENTER);
+    ellipse(loc.x, loc.y, sz+10, sz+10);
     image(bs, loc.x, loc.y, sz, sz);
+    imageMode(CORNER);
   }
 
   void move() {
     loc.add(vel);
-    //    loc.y.add(vel);
-    //  vel.add(acc);
   }
-  
+
   //movement pattern
   void bounce() { 
     if (loc.x + 400 > width) {
